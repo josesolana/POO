@@ -1,0 +1,24 @@
+Abrir GitShell
+cd 'CARPETADONDEESTAPROYECTO'
+
+Clonar:
+git clone -b 'Nombre del Branch' git@github.com:PabloGBello/POO.git
+
+Entrar en esa carpeta con 'cd POO'
+ACTUALIZAR MI BRANCH Y MASTER LOCAL
+1.	git checkout master <- Mover al master
+2.	git pull origin master<- Actualizar el local
+3.	git checkout 'Nombre del Branch' <- Mover a mi branch
+4.	git merge master<- Mergear mi local
+
+ACTUALIZAR MI BRANCH REMOTO
+5.	git checkout 'Nombre del Branch' <- Mover a mi branch
+6.	git add . <- Agregar todos los cambios
+7.	git commit -m 'comentario' <- Realizar el commit
+8.	git push origin 'Nombre del Branch' <- Subir cambios al branch remoto
+
+ACTUALIZAR MASTER REMOTO (Pimero haber hecho el anterior)
+9.	git checkout master<- Mover al master
+10.	git merge 'Nombre del Branch' <- Mergear con el nuevo commit que hice
+11.	git push origin master <- Subir los cambios
+12.	git checkout 'Nombre del Branch' <- Volver a mi branch

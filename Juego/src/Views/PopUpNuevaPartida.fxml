@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PopUpNuevaPartidaController">
+   <children>
+      <TabPane>
+         <tabs>
+            <Tab closable="false" text="Mazos">
+              <content>
+                <AnchorPane id="paneMazos" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="panePopUp" stylesheets="@../CSS/Styles.css" />
+              </content>
+            </Tab>
+            <Tab closable="false" text="Opciones de Juego">
+               <content>
+                  <AnchorPane id="paneOpciones" fx:id="anchorPane" cache="true" cacheHint="SPEED" prefHeight="520.0" prefWidth="640.0" styleClass="panePopUp" stylesheets="@../CSS/Styles.css">
+                      <children>
+                          <Label fx:id="lblNomJugador" alignment="TOP_LEFT" layoutX="103.0" layoutY="260.0" prefHeight="39.0" prefWidth="91.0" styleClass="lblPopUp" text="NOMBRE">
+                              <font>
+                                  <Font size="16.0" />
+                              </font>
+                          </Label>
+                          <TextField fx:id="txtBoxNomPlayer" layoutX="378.0" layoutY="260.0" prefHeight="39.0" prefWidth="150.0" styleClass="txtbxPopUp" stylesheets="@../CSS/Styles.css">
+                              <font>
+                                  <Font size="15.0" />
+                              </font>
+                          </TextField>
+                          <Label fx:id="lblNumRondas" alignment="TOP_LEFT" layoutX="103.0" layoutY="132.0" prefHeight="39.0" prefWidth="91.0" styleClass="lblPopUp" text="RONDAS">
+                              <font>
+                                  <Font size="18.0" />
+                              </font>
+                          </Label>
+                          <CheckBox fx:id="chkBoxAuto" layoutX="109.0" layoutY="366.0" mnemonicParsing="false" onAction="#automatic" prefHeight="39.0" prefWidth="88.0" styleClass="chkbxPopUp" text="Auto">
+                              <font>
+                                  <Font size="9.0" />
+                              </font>
+                          </CheckBox>
+                          <Slider fx:id="sldNumRondas" layoutX="378.0" layoutY="132.0" prefHeight="39.0" prefWidth="150.0" />
+                          <Label fx:id="lblRondas" alignment="TOP_RIGHT" layoutX="492.0" layoutY="171.0" prefHeight="30.0" prefWidth="36.0" styleClass="lblPopUp" text="4">
+                              <font>
+                                  <Font size="18.0" />
+                              </font>
+                          </Label>
+                        <ChoiceBox fx:id="choiceBoxModalidad" layoutX="221.0" layoutY="373.0" prefWidth="150.0" styleClass="cmbPopUp" stylesheets="@../CSS/Styles.css" visible="false" />
+                        <ChoiceBox fx:id="cmbAttributes" layoutX="384.0" layoutY="373.0" prefWidth="150.0" styleClass="cmbPopUp" stylesheets="@../CSS/Styles.css" visible="false" />
+                      </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+        <Button fx:id="btnReady" alignment="CENTER" contentDisplay="CENTER" layoutX="371.0" layoutY="456.0" mnemonicParsing="false" onAction="#btnReadyActionHandler" prefHeight="46.0" prefWidth="163.0" styleClass="btnPopUp" stylesheets="@../CSS/Styles.css" text="COMENZAR!">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Button>
+        <Button fx:id="btnAtras" alignment="CENTER" contentDisplay="CENTER" layoutX="109.0" layoutY="456.0" mnemonicParsing="false" onAction="#btnReturnActionHandler" prefHeight="46.0" prefWidth="163.0" styleClass="btnPopUp" stylesheets="@../CSS/Styles.css" text="ATRÁS">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Button>
+   </children>
+</AnchorPane>

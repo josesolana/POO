@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.input.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="pane" fx:id="pane" cache="true" cacheHint="SPEED" prefHeight="768.0" prefWidth="1024.0" styleClass="pane" stylesheets="/CSS/Styles.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MenuPrincipalController">
+    <children>
+        <VBox fx:id="vBoxBottons" alignment="CENTER" layoutX="362.0" layoutY="184.0" prefHeight="400.0" prefWidth="300.0" spacing="40.0">
+            <children>
+                <Button fx:id="btnNuevaPartida" mnemonicParsing="false" onAction="#btnNuevaPartidaActionHandler" prefHeight="200.0" prefWidth="250.0" styleClass="btnMenu1" text="NUEVA PARTIDA !" textAlignment="CENTER" wrapText="true" />
+                <Button fx:id="btnPersonajes" mnemonicParsing="false" onAction="#btnPersonajesActionHandler" prefHeight="200.0" prefWidth="250.0" styleClass="btnMenu1" text="PERSONAJES" textAlignment="CENTER" wrapText="true">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnSalir" mnemonicParsing="false" onAction="#btnSalirActionHandler" prefHeight="200.0" prefWidth="250.0" styleClass="btnMenu1" text="SALIR" textAlignment="CENTER" wrapText="true">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Button>
+            </children>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+        </VBox>
+        <MenuBar styleClass="menuBar">
+            <menus>
+                <Menu mnemonicParsing="false" styleClass="menu" text="OPCIONES">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#btnNuevaPartidaActionHandler" styleClass="menuItem" text="Nueva Partida">
+                            <accelerator>
+                                <KeyCodeCombination alt="ANY" code="N" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                            </accelerator>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#showHelpScreen" styleClass="menuItem" text="Acerca de">
+                            <accelerator>
+                                <KeyCodeCombination alt="ANY" code="H" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                            </accelerator>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#btnSalirActionHandler" styleClass="menuItem" text="Salir">
+                            <accelerator>
+                                <KeyCodeCombination alt="ANY" code="S" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                            </accelerator>
+                        </MenuItem>
+                    </items>
+                    <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="M" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                    </accelerator>
+                </Menu>
+            </menus>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </MenuBar>
+    </children>
+</AnchorPane>

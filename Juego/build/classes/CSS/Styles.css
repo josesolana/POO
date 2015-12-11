@@ -1,0 +1,314 @@
+
+.pane{
+    -fx-background-color: #1A1919;
+    -fx-background-image: url("/Resources/Images/Wallpapers/z_Background1.jpg");
+    -fx-background-size: stretch;
+    -fx-background-repeat:no-repeat;
+}
+
+
+.panePopUp{
+    -fx-background-color: #1A1919;
+    -fx-background-image: url("/Resources/Images/Wallpapers/z_wppersonaje.jpg");
+    -fx-background-size: stretch;
+    -fx-background-repeat:no-repeat;
+}
+
+
+.panePartida{
+    -fx-background-image: url("/Resources/Images/Wallpapers/WoodBackground.jpg");
+    -fx-background-size: auto;
+}
+
+
+.lbl{
+    -fx-text-fill: #FFBB00;  
+}
+
+.lblName{
+    -fx-text-fill: #FFBB00; 
+    -fx-font-familiy: arial;
+    -fx-font-size: 20px;
+}
+
+.btnMenu1{
+    width: 250px;
+    height: 200px;
+    -fx-background-color: #CC0066;
+    -fx-border-color: #CC0066;
+    -fx-border-width: 1; 
+    -fx-border-radius: 4;
+    -fx-text-fill: #1A1919;
+    -fx-font-family: "Helvetica, SansSerif";
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.btnMenu1:hover{
+    -fx-background-color: #FF3083;
+    -fx-border-color: #FF3083;
+    transition: .2s linear;
+}
+
+.lblNuevaPartida{
+    -fx-text-fill: #00FF00; 
+    -fx-font-familiy: arial;
+    -fx-font-weight: bold;
+    -fx-font-size: 22px;
+}
+
+.lblNuevaPartidaMenu{
+    -fx-text-fill: #FFFFFF; 
+    -fx-font-familiy: arial;
+    -fx-font-style: italic;
+    -fx-font-size: 18px;
+}
+
+.lblNuevaPartidaMenuTitle{
+    -fx-text-fill: #FFFFFF; 
+    -fx-font-familiy: arial;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+}
+
+.lblNuevaPartidaMenuMsg{
+    -fx-text-fill: #00FF00; 
+    -fx-font-familiy: arial;
+    -fx-font-style: italic;
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+}
+
+.btnMenu2{
+    width: 250px;
+    height: 200px;
+    -fx-background-color: #C2C2C2;
+    -fx-border-color: #C2C2C2;
+    -fx-border-width: 1; 
+    -fx-border-radius: 4;
+    -fx-text-fill: #1A1919;
+    -fx-font-family: "Helvetica, SansSerif";
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.btnMenu2:hover{
+    -fx-background-color: #E0E0E0;
+    -fx-border-color: #E0E0E0;
+    transition: .2s linear;
+}
+
+.lblAcercaDe{
+    -fx-text-fill: #C2C2C2; 
+    -fx-font-family: Helvetica, SansSerif;
+    -fx-font-size: 22px;
+}
+
+.hBoxAcercaDe{
+    -fx-background-color: transparent;
+    -fx-border-color: #616161;
+    -fx-border-width: 1; 
+    -fx-border-radius: 4;
+}
+
+
+.vboxMenu{
+    -fx-background-color: transparent;
+    -fx-border-color: #FFFFFF;
+    -fx-border-width: 1; 
+    -fx-border-radius: 4;   
+}
+
+.btnNuevaPartida{
+    -fx-background-color: #FFFFFF; 
+    -fx-border-color: #FFFFFF;
+    -fx-border-width: 1;
+    -fx-border-radius: 4;
+    -fx-text-fill: #4A2500;
+    -fx-font-family: Helvetica, SansSerif;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    transition: all 0.5s ease 0.5s;
+}
+
+.btnNuevaPartida:hover{
+    -fx-background-color: #D0D0D0;
+    -fx-border-color: #D0D0D0;
+    transition: .2s linear;
+}
+
+.btnNuevaPartida2{
+    width: 250px;
+    height: 200px;
+    -fx-background-color: #FF3300;
+    -fx-border-color: #FF3300;
+    -fx-border-width: 1; 
+    -fx-border-radius: 4;   
+    -fx-text-fill: #1A1919;
+    -fx-font-family: "Helvetica, SansSerif";
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.btnNuevaPartida2:hover {  
+    -fx-background-color: #FF5930;
+    -fx-border-color: #FF5930;
+    transition: .2s linear;
+}
+
+.hBoxTable{
+    -fx-background-color: transparent;
+    -fx-opacity: 1;
+    -fx-border-color: #808080;
+    -fx-border-width: 1; 
+    -fx-border-radius: 4;
+}
+
+.hBoxTable:hover{  
+    -fx-border-color: #00FF00;
+    -fx-border-width: 3; 
+    -fx-border-radius: 4;
+    transition: 1s linear;
+}
+
+.hboxPlayers{
+    -fx-background-color: transparent;
+    -fx-border-color: #808080;
+    -fx-border-width: 1; 
+    -fx-border-radius: 4;
+}
+
+.scrollPanePlayer{   
+    -fx-background-color: #432100;
+    -fx-border-color: #808080;
+    -fx-border-width: 1; 
+    -fx-border-radius: 4;
+}
+
+.hboxPlayers2{
+    -fx-background-color: #432100;
+    -fx-border-style: none;
+}
+
+.deck{   
+    -fx-background-repeat:no-repeat;
+    -fx-background-size: 110 150;
+    -fx-background-position: center center;
+    -fx-background-radius: 3;
+    -fx-effect: dropshadow( gaussian, black, 30, 0.6, 0.5, 0.5); 
+}
+
+.cmbAttributes{
+    -fx-background-color: transparent;
+    -fx-border-radius: 4;
+    -fx-border-color: #FFFFFF;
+    -fx-text-fill: #FFFFFF; 
+    -fx-font-size: 20px;
+    -fx-font-style: italic;
+}
+
+.cmbAttributes .list-view {
+    -fx-background-color: transparent;
+    -fx-border-radius: 4;
+    -fx-border-color: #0099FF;
+    -fx-vbar-policy: as-needed;
+}
+
+.cmbAttributes .list-cell{
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-text-fill: #FFFFFF; 
+    -fx-font-size: 20px;
+    -fx-font-style: italic;
+}
+
+
+.lblPopUp{
+    -fx-text-fill: #0099FF;
+    -fx-font-family: "Helvetica, SansSerif";
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.cmbPopUp{
+    -fx-background-color: transparent;
+    -fx-border-radius: 4;
+    -fx-border-color: #808080;
+    -fx-text-fill: #cdcdcd; 
+    -fx-font-size: 14px;
+}
+
+.cmbPopUp .list-view {
+    -fx-background-color: transparent;
+    -fx-border-radius: 4;
+    -fx-border-color: #808080;
+    -fx-vbar-policy: as-needed;
+}
+
+.cmbPopUp .list-cell{
+    -fx-border-color: transparent;
+    -fx-background-color: #1A1919;
+    -fx-text-fill: #cdcdcd;  
+    -fx-font-size: 14px;
+}
+
+.txtbxPopUp{
+    -fx-background-color: transparent;
+    -fx-border-radius: 4;
+    -fx-border-color: #808080;
+    -fx-text-fill: #0099FF; 
+    -fx-font-family: "Helvetica, SansSerif";
+    -fx-font-size: 14px;
+}
+
+.chkbxPopUp{
+    -fx-background-color: transparent;
+    -fx-border-radius: 4;
+    -fx-border-color: #3B3B3B;
+    -fx-text-fill: #0099FF; 
+    -fx-font-family: "Helvetica, SansSerif";
+    -fx-font-size: 14px; 
+}
+
+.btnPopUp{
+    width: 250px;
+    height: 200px;
+    -fx-background-color: #0099FF;
+    -fx-border-color: #0099FF;
+    -fx-border-width: 1; 
+    -fx-border-radius: 4;
+    -fx-text-fill: #1A1919;
+    -fx-font-family: "Helvetica, SansSerif";
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.btnPopUp:hover{
+    -fx-background-color: #4DB8FF;
+    -fx-border-color: #4DB8FF;
+    transition: .2s linear;
+}
+
+.menuBar{
+    -fx-background-color: #1A1919;
+    -fx-border-color: #1A1919;
+    -fx-border-width: 1; 
+    -fx-border-radius: 4;
+}
+
+.menu{
+    width: 250px;
+    height: 40px;
+    -fx-background-color: #CC0066;
+    -fx-text-fill: #CC0066;
+    -fx-font-family: Arial, Serif;
+    -fx-font-size: 18px;
+}
+
+.tab-label {
+    -fx-content-display: top;
+}
+.tab-pane {
+    -fx-tab-min-height: 70;
+    -fx-tab-max-height: 70;
+}

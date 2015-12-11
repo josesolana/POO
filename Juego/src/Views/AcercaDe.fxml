@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.input.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="pane" fx:id="pane" prefHeight="768.0" prefWidth="1024.0" styleClass="pane" stylesheets="/CSS/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MasterController">
+    <children>
+        <Button fx:id="btnReturn" layoutX="760.0" layoutY="684.0" mnemonicParsing="false" onAction="#btnReturnActionHandler" prefHeight="70.0" prefWidth="250.0" styleClass="btnMenu1" text="MENÚ PRINCIPAL" textAlignment="CENTER" wrapText="true">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Button>
+        <Label alignment="CENTER" layoutX="216.0" layoutY="14.0" styleClass="lblAcercaDe" text="PROGRAMACIÓN ORIENTADA A OBJETOS: PROYECTO FINAL" />
+        <Label alignment="CENTER" layoutX="18.0" layoutY="209.0" styleClass="lblAcercaDe" text="Autores:" />
+        <Label alignment="CENTER" layoutX="14.0" layoutY="96.0" styleClass="lblAcercaDe" text="Tematica:" />
+        <HBox alignment="CENTER_LEFT" fillHeight="false" layoutX="125.0" layoutY="241.0" spacing="25.0" styleClass="hBoxAcercaDe">
+            <children>
+                <Label alignment="CENTER" styleClass="lblAcercaDe" text="José Solana" />
+                <Label alignment="CENTER" styleClass="lblAcercaDe" text="LU N° 246362" />
+                <Label alignment="CENTER" styleClass="lblAcercaDe" text="DNI N° 32425365" />
+            </children>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" fillHeight="false" layoutX="125.0" layoutY="306.0" spacing="25.0" styleClass="hBoxAcercaDe">
+            <children>
+                <Label alignment="CENTER" styleClass="lblAcercaDe" text="Pablo Bello" />
+                <Label alignment="CENTER" styleClass="lblAcercaDe" text="LU N° 247320" />
+                <Label alignment="CENTER" styleClass="lblAcercaDe" text="DNI N° 36797767" />
+            </children>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" fillHeight="false" layoutX="125.0" layoutY="128.0" spacing="25.0" styleClass="hBoxAcercaDe">
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+            <children>
+                <Label alignment="CENTER" styleClass="lblAcercaDe" text="Implementación del trabajo de la cursada 2015: Juego  &quot;Héroes Y Villanos&quot;&quot;" />
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>

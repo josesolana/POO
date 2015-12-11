@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="pane" fx:id="pane" cache="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" styleClass="panePartida" stylesheets="/CSS/Styles.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PartidaController">
+    <children>
+        <Label fx:id="lblNomPlayer" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="72.0" layoutY="514.0" prefHeight="50.0" prefWidth="300.0" styleClass="lblNuevaPartida" text="Jugador" />
+        <Label fx:id="lblNomCOM" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="284.0" layoutY="194.0" prefHeight="50.0" prefWidth="65.0" styleClass="lblNuevaPartida" text="CPU" textAlignment="JUSTIFY" wrapText="true" />
+        <HBox id="hboxPlayer" fx:id="hboxPlayer" alignment="CENTER_LEFT" fillHeight="false" layoutX="37.0" layoutY="564.0" prefHeight="180.0" prefWidth="335.0" spacing="100.0" styleClass="hboxPlayers">
+            <padding>
+                <Insets bottom="4.0" left="10.0" right="10.0" top="4.0" />
+            </padding>
+            <children>
+                <ImageView blendMode="SRC_ATOP" cache="true" fitHeight="150.0" fitWidth="110.0" onMouseClicked="#showPlayerCard" pickOnBounds="true" preserveRatio="true" styleClass="deck">
+                    <image>
+                        <Image url="/Resources/Images/Cards/card_back.png" />
+                    </image>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </ImageView>
+            </children>
+        </HBox>
+        <VBox alignment="CENTER" layoutX="397.0" layoutY="514.0" prefHeight="113.0" prefWidth="280.0" spacing="10.0" styleClass="vboxMenu2">
+            <children>
+                <Button fx:id="btnNextRound" mnemonicParsing="false" onAction="#nextRound" prefHeight="47.0" prefWidth="214.0" styleClass="btnNuevaPartida" text="SIGUIENTE RONDA">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnPlay" mnemonicParsing="false" onAction="#play" prefHeight="47.0" prefWidth="170.0" styleClass="btnNuevaPartida" text="TIRAR!">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Button>
+            </children>
+            <padding>
+                <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+            </padding>
+        </VBox>
+        <HBox id="hboxCOM" fx:id="hBoxCOM" alignment="CENTER_LEFT" fillHeight="false" layoutX="14.0" layoutY="14.0" prefHeight="180.0" prefWidth="335.0" spacing="100.0" styleClass="hboxPlayers">
+            <padding>
+                <Insets bottom="4.0" left="10.0" right="10.0" top="4.0" />
+            </padding>
+            <children>
+                <ImageView blendMode="SRC_ATOP" cache="true" fitHeight="150.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" styleClass="deck">
+                    <image>
+                        <Image url="/Resources/Images/Cards/card_back.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="imgCardCPU" blendMode="SRC_ATOP" cache="true" fitHeight="150.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" styleClass="cardBack">
+                    <image>
+                        <Image url="/Resources/Images/Cards/card_back.png" />
+                    </image>
+                    <effect>
+                        <DropShadow />
+                    </effect>
+                </ImageView>
+            </children>
+        </HBox>
+        <VBox id="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;?import java.lang.*?&gt;&lt;?import javafx.scene.image.*?&gt;&lt;ImageView id=&quot;cardCOM&quot; fx:id=&quot;cardCOM&quot; blendMode=&quot;SRC_ATOP&quot; fitHeight=&quot;180.0&quot; fitWidth=&quot;150.0&quot; pickOnBounds=&quot;true&quot; preserveRatio=&quot;true&quot; styleClass=&quot;cardFront&quot; xmlns=&quot;http://javafx.com/javafx/8&quot; xmlns:fx=&quot;http://javafx.com/fxml/1&quot; /&gt;" alignment="TOP_CENTER" layoutX="734.0" layoutY="14.0" prefHeight="337.0" prefWidth="190.0" spacing="5.0" styleClass="vboxMenu">
+            <children>
+                <Label prefHeight="50.0" prefWidth="160.0" styleClass="lblNuevaPartidaMenuTitle" text="RONDAS" wrapText="true" />
+                <Label prefHeight="50.0" prefWidth="160.0" styleClass="lblNuevaPartidaMenu" text="ACTUAL:" wrapText="true" />
+                <Label prefHeight="50.0" prefWidth="160.0" styleClass="lblNuevaPartidaMenu" text="TOTAL:" wrapText="true" />
+                <Label prefHeight="50.0" prefWidth="160.0" styleClass="lblNuevaPartidaMenuTitle" text="PUNTAJES" wrapText="true" />
+                <Label fx:id="lblPuntajePlayer" prefHeight="50.0" prefWidth="160.0" styleClass="lblNuevaPartidaMenu" text="PLAYER: " wrapText="true" />
+                <Label prefHeight="50.0" prefWidth="160.0" styleClass="lblNuevaPartidaMenu" text="CPU: " wrapText="true" />
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <padding>
+                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+            </padding>
+            <cursor>
+                <Cursor fx:constant="NONE" />
+            </cursor>
+        </VBox>
+        <VBox id="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;?import java.lang.*?&gt;&lt;?import javafx.scene.image.*?&gt;&lt;ImageView id=&quot;cardCOM&quot; fx:id=&quot;cardCOM&quot; blendMode=&quot;SRC_ATOP&quot; fitHeight=&quot;180.0&quot; fitWidth=&quot;150.0&quot; pickOnBounds=&quot;true&quot; preserveRatio=&quot;true&quot; styleClass=&quot;cardFront&quot; xmlns=&quot;http://javafx.com/javafx/8&quot; xmlns:fx=&quot;http://javafx.com/fxml/1&quot; /&gt;" alignment="CENTER" layoutX="924.0" layoutY="14.0" prefHeight="337.0" prefWidth="65.0" spacing="5.0" styleClass="vboxMenu">
+            <children>
+                <Label fx:id="lblNomCOM1121" alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="50.0" prefWidth="40.0" styleClass="lblNuevaPartidaMenu" wrapText="true" />
+                <Label fx:id="lblActualRound" alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="50.0" prefWidth="40.0" styleClass="lblNuevaPartidaMenu" text="0" wrapText="true" />
+                <Label fx:id="lblRounds" alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="50.0" prefWidth="40.0" styleClass="lblNuevaPartidaMenu" text="3" wrapText="true" />
+                <Label fx:id="lblNomCOM112" alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="50.0" prefWidth="40.0" styleClass="lblNuevaPartidaMenu" text="0" wrapText="true" />
+                <Label fx:id="lblPuntajePlayer1" alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="50.0" prefWidth="40.0" styleClass="lblNuevaPartidaMenu" text="0" wrapText="true" />
+                <Label fx:id="lblPuntajeCOM" alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="50.0" prefWidth="40.0" styleClass="lblNuevaPartidaMenu" text="0" wrapText="true" />
+            </children>
+            <padding>
+                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+            </padding>
+            <cursor>
+                <Cursor fx:constant="NONE" />
+            </cursor>
+        </VBox>
+        <Label id="lblAttribute" fx:id="lblAttribute" alignment="CENTER" layoutX="723.0" layoutY="352.0" prefHeight="50.0" prefWidth="220.0" styleClass="lblNuevaPartidaMenuTitle" text="CARACTERÍSTICA" wrapText="true" />
+        <ComboBox id="cmbAttributes" fx:id="cmbAttributes" layoutX="738.0" layoutY="402.0" prefHeight="45.0" prefWidth="220.0" promptText="Atributos" styleClass="cmbAttributes" visibleRowCount="3">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ComboBox>
+        <HBox id="hBoxTable" fx:id="hBoxTable" alignment="CENTER" depthTest="DISABLE" fillHeight="false" layoutX="242.0" layoutY="274.0" onMouseClicked="#enfrentar" pickOnBounds="false" prefHeight="220.0" prefWidth="400.0" spacing="100.0" styleClass="hBoxTable">
+            <padding>
+                <Insets bottom="4.0" left="10.0" right="10.0" top="4.0" />
+            </padding>
+        </HBox>
+        <Label fx:id="lblMessage" alignment="BOTTOM_RIGHT" layoutX="654.0" layoutY="475.0" prefHeight="78.0" prefWidth="335.0" styleClass="lblNuevaPartidaMenuMsg" wrapText="true" />
+        <VBox alignment="CENTER" layoutX="709.0" layoutY="631.0" prefHeight="113.0" prefWidth="280.0" spacing="10.0" styleClass="vboxMenu2">
+            <children>
+                <Button fx:id="btnNextGame11" mnemonicParsing="false" prefHeight="47.0" prefWidth="170.0" styleClass="btnNuevaPartida" text="AYUDA">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnReturn1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#btnReturnActionHandler" prefHeight="50.0" prefWidth="170.0" styleClass="btnNuevaPartida" text="SALIR" textAlignment="CENTER" wrapText="true">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Button>
+            </children>
+            <padding>
+                <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+            </padding>
+        </VBox>
+      <Label fx:id="lblCaractCPU" layoutX="321.0" layoutY="494.0" text="lblCaractCPU" visible="false" />
+      <Label fx:id="lblCaractPlayer" layoutX="523.0" layoutY="494.0" text="lblCaractPlayer" visible="false" />
+    </children>
+</AnchorPane>

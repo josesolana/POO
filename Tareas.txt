@@ -1,0 +1,7 @@
+-Borrar la dificultad. José
+-Acomodar viejo popup José
+-PopUp para elegir la estrategia y mazos. Pablo
+-Las cartas jugadas, se agregan al mazo de quién ganó. José
+-Puede elegir cuantas rondas quiera(Máx 100). José
+-Se deben poder agregar mas mazos/personajes Pablo o José. Como quieras
+-La clase jugador Pablo o José.
