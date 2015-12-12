@@ -1,5 +1,3 @@
-
-import Model.Personajes.Personaje;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -10,65 +8,71 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.effect.BlendMode;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 
 public class PersonajesController implements Initializable {
 
-    private ArrayList<Personaje> mainList;
+    private static final StringBuilder  DEFAULT_NAME = new StringBuilder("NINGUNO");
 
     @FXML
-    private GridPane gridPaneCards;
+    private HBox hBoxMazos;
     @FXML
     private Button btnReturn;
-
+    @FXML
+    private Button btnEditMazo; 
+    @FXML
+    private Label lblNombreMazo;
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        mainList = ModelLoader.getInstance().getListaIndividuos();
-        renderGrid();
+        mostrarMazos(ModelLoader.getInstance().getMazos());
+        seleccionarMazo(DEFAULT_NAME, false);
     }
 
-    // Refinar el código, no está bueno
-    private void renderGrid() {
-        int i = 0;
-        int j = 0;
-        for (Personaje p : mainList) {
-            if (j > 6) {
-                i++;
-                j = 0;
-            }
-            ImageView img = new ImageView(p.getImage());
-            img.setOnMouseClicked((MouseEvent event) -> {
-                mostrar();
-            });
-            setCommonCardStyles(img);
-            GridPane.setConstraints(img, j, i);
-            gridPaneCards.getChildren().add(img);
-            j++;
-        }
-    }
-
-    public void mostrar() {
-        System.out.println("Holaaaaaaa");
-    }
-
-    public void setCommonCardStyles(ImageView image) {
-        image.setFitHeight(120);
-        image.setFitWidth(90);
+    private void setCommonCardStyles(ImageView image){
+        image.setFitHeight(200);
+        image.setFitWidth(150);
         image.setSmooth(true);
         image.setPreserveRatio(true);
         image.setEffect(new DropShadow());
+        image.setBlendMode(BlendMode.SRC_ATOP);
     }
 
-    public void btnAddPersonajeActionHandler(ActionEvent event) throws IOException {
-        System.out.println("Qué acelga?");
+    private void mostrarMazos(ArrayList<Mazo> mazos){
+        mazos.parallelStream().forEach((Mazo m) -> {
+            ImageView img = new ImageView(m.getEspalda());
+            img.setOnMouseClicked((MouseEvent a) -> {   
+                seleccionarMazo(m.getNombre(), true);
+                }); 
+            setCommonCardStyles(img);     
+            hBoxMazos.getChildren().add(img);
+        });
     }
-
+    
+    private void seleccionarMazo(StringBuilder nombre, boolean value){
+        lblNombreMazo.setText(nombre.toString());
+        btnEditMazo.setVisible(value);
+    }
+    
+    public void btnAddMazoActionHandler(ActionEvent event) throws IOException {
+        System.out.println("AGREGAR MAZO");
+    }
+    
+    public void btnEditMazoActionHandler(ActionEvent event) throws IOException {
+        System.out.println("EDITAR MAZO " + lblNombreMazo.getText());
+    }
+    
+    public void btnResetActionHandler(ActionEvent event) throws IOException {
+        seleccionarMazo(DEFAULT_NAME, false);
+    }
+    
     public void btnReturnActionHandler(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Views/MenuPrincipal.fxml"));
         Juego.getSceneMaster().setRoot(root);
     }
-
 }

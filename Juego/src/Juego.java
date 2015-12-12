@@ -18,7 +18,6 @@ public class Juego extends Application {
 
     @Override
     public void start(final Stage stage) throws Exception {
-        ModelLoader.getInstance();
         stageMaster=stage;
         Parent root = FXMLLoader.load(getClass().getResource("Views/MenuPrincipal.fxml"));
         sceneMaster= new Scene(root);

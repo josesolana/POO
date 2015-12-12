@@ -2,7 +2,6 @@
 
 import Model.Elementos.*;
 import Model.Personajes.*;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -10,7 +9,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Platform;
 import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
@@ -20,106 +18,103 @@ import jxl.read.biff.BiffException;
 public class ModelLoader {
 
     //<editor-fold defaultstate="collapsed" desc="Region VARIABLES AND CONSTRUCTORS">
-    public final static String IMGFOLDER = "/Resources/Images/Cards/";
-    public final static String EXCEL = "/Resources/ExcelSheets/Personajes.xls";
-    private final static ModelLoader INSTANCE = new ModelLoader();              //TODO: Hay que Hacer que juege y agrege las cartas
+    public final static StringBuffer IMGFOLDER = new StringBuffer( "/Resources/Images/Cards/");
+    private final static StringBuffer MAZOS = new StringBuffer("/Resources/ExcelSheets/Mazos.xls");
+    private final static StringBuffer LIGAS = new StringBuffer("/Resources/ExcelSheets/Ligas.xls");
+    private final static ModelLoader INSTANCE = new ModelLoader(); 
     
-    private final HashSet<String> allAttrib;
-    private ArrayList<Personaje> listaIndividuos;
+    private ArrayList<Mazo> listaMazos;
 
     private ModelLoader() {
-        allAttrib = new HashSet<>();
-        listaIndividuos = new ArrayList<>();
-        try {
-            loadElements();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ModelLoader.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        listaMazos = new ArrayList<>();
+        loadPersonajes();
+        loadLiga();
     }
 
     public static ModelLoader getInstance() {
         return INSTANCE;
     }
-
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Region EXCEL AND ELEMENTS LOADING">
-    private Sheet loadExcelSheet(int hoja) {
+    private ArrayList<Sheet> loadExcelSheet(StringBuffer plantilla) {
+        final InputStream excelIS = getClass().getResourceAsStream(plantilla.toString());
+        Sheet[] sheet=null;
         try {
-            final InputStream excelIS = getClass().getResourceAsStream(EXCEL);
-            Sheet sheet = Workbook.getWorkbook(excelIS).getSheet(hoja);
-            return sheet;
+            sheet = Workbook.getWorkbook(excelIS).getSheets();
         } catch (IOException | BiffException ex) {
-            Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ModelLoader.class.getName())
+                    .log(Level.SEVERE, null, ex);
         }
-        return null;
+        return (new ArrayList<>(Arrays.asList(sheet)));
     }
 
-    //TODO: REVISAR ESTO, es 99% REUSABLE!
-    private void loadElements() throws FileNotFoundException {
-        //Platform.runLater(()->{
-            Sheet sheet = loadExcelSheet(0);
-            // Cargo la hoja de excel con la información de los individuos.
-            int rows = sheet.getRows();
-            int columns = sheet.getColumns();
-
+    private void loadPersonajes(){
+        // Cargo la hoja de excel con la información de los individuos
+        loadExcelSheet(MAZOS).forEach(mazo -> {
             // La fila 0 de la hoja contiene la cabecera de los datos (nombre, fuerza, etc).
-            Cell[] headerRow = sheet.getRow(0);
-
+            HashSet<String> atributos=new HashSet<>();
+            ArrayList<Personaje> listaIndividuos= new ArrayList<>();
+            Cell[] headerRow = mazo.getRow(0);
             // Cargo la lista con los individuos que se encuentran en la base de datos (hoja de excel).
-            for (int i = 1; i < rows; i++) {
-                Individuo x = createIndividuo(sheet, headerRow, i, columns);
+            for (int i = 1; i < mazo.getRows() ; i++) {
+                Individuo x = createIndividuo(mazo.getRow(i), headerRow,atributos);
                 listaIndividuos.add(x);
             }
-        //});
-        //Platform.runLater(()->{
-            /*Sheet*/ sheet = loadExcelSheet(1);
-            // Ahora cargo los Grupos, que están en el mismo archivo de excel, pero en la hoja 1.
-            /*int */rows = sheet.getRows();
-            /*int */columns = sheet.getColumns();
-            // La fila 0 de la hoja contiene la cabecera de los datos (nombre, fuerza, etc).
-            /*Cell[] */headerRow = sheet.getRow(0);
-
-            for (int i = 1; i < rows; i++) {
-                Grupo x = createGrupo(sheet, headerRow, i, columns, listaIndividuos);
-                listaIndividuos.add(x);
-            }
-        //});
+            listaMazos.add(new Mazo(mazo.getName(), listaIndividuos, atributos));
+        });
     }
-
-    private Individuo createIndividuo(Sheet sheet, Cell[] headerRow, int row, int columns) {
-        Cell[] individuoRow = sheet.getRow(row);    // Cargo la fila correspondiente al personaje
-                                                    // Creo el nuevo individuo con: 
-        Individuo temp = new Individuo(individuoRow[0].getContents(),  // Nombre
-                                       individuoRow[2].getContents(),  // Companía de Origen
-                                       individuoRow[1].getContents()); // Bando (héroe o villano).
+    
+    private void loadLiga(){
+        loadExcelSheet(LIGAS).forEach((final Sheet liga) -> { // Ahora cargo los Grupos, que están en el mismo archivo de excel, pero en la hoja 1.
+            // La fila 0 de la hoja contiene la cabecera de los datos (nombre, fuerza, etc).
+            Mazo mazo=null;
+            for (Mazo mazoTemp : listaMazos){
+                if(mazoTemp.getNombre().toString().equals(liga.getName())){
+                    mazo=mazoTemp;
+                    break;
+                }
+            }
+            if(mazo!=null){
+                Cell[] headerRow = liga.getRow(0);
+                for (int i = 1; i < liga.getRows(); i++) {
+                    Grupo x = createGrupo(liga.getRow(i), headerRow, mazo);
+                    mazo.addCartas(x);
+                }
+            }
+        });
+    }
+    
+    private Individuo createIndividuo(Cell[] persRow, Cell[] headerRow,HashSet<String> attrib) {
+        // Creo el nuevo individuo con: 
+        Individuo temp = new Individuo(persRow[0].getContents(),  // Nombre
+                                       persRow[2].getContents(),  // Companía de Origen
+                                       persRow[1].getContents()); // Bando (héroe o villano).
         
         String attribName;
         for (int j = 3; j < headerRow.length; j++) {
             attribName = headerRow[j].getContents();
-            temp.addAtributo(attribName, new APropio(Double.parseDouble(individuoRow[j].getContents())));
-            allAttrib.add(attribName);
+            temp.addAtributo(attribName, new APropio(Double.parseDouble(persRow[j].getContents())));
+            attrib.add(attribName);
         }
         return temp;
     }
 
-    private Grupo createGrupo(Sheet sheet, Cell[] headerRow, int row, int columns, ArrayList<Personaje> lista) {
-        Cell[] grupoRow = sheet.getRow(row); // cargo la fila correspondiente al personaje
+    private Grupo createGrupo(Cell[] ligaRow, Cell[] headerRow, Mazo mazo) {
         // Creo el nuevo Grupo con: Nombre y Bando (héroe o villano). 
-        Grupo temp = new Grupo(grupoRow[0].getContents(), grupoRow[1].getContents());
-        addPersonajesToGrupo(temp, grupoRow, lista);        // Posteriormente obtengo los personajes que lo componen  
-        addEstrategiasToGrupo(temp, headerRow, grupoRow);   // Lo sgrego a su lista.
+        Grupo temp = new Grupo(ligaRow[0].getContents(), ligaRow[1].getContents());
+        addPersonajesToGrupo(temp, ligaRow, mazo);        // Posteriormente obtengo los personajes que lo componen  
+        addEstrategiasToGrupo(temp, headerRow, ligaRow);   // Lo sgrego a su lista.
         return temp;
     }
 
-    private void addPersonajesToGrupo(Grupo temp, Cell[] grupoRow, ArrayList<Personaje> lista) {
+    private void addPersonajesToGrupo(Grupo grupo, Cell[] grupoRow, Mazo mazo) {
         ArrayList<String> miembros = new ArrayList<>(Arrays.asList(grupoRow[grupoRow.length - 2].getContents().split(",")));
-        miembros.parallelStream().forEach(nombre -> //Recorro la lista de Miembros
-            lista.parallelStream().filter(p -> // Filtro de la lista de personajes
-                    (p.getNombre().equals(nombre))).parallel().forEach(personalTemp -> { //Aquellos que son igual a nombre
-                        temp.addPersonaje(personalTemp); //Finalmente lo agrego
-            })
-        );
+        miembros.parallelStream().forEach(nombre ->{
+            Personaje aux=mazo.getCarta(nombre);
+            if (aux!=null)
+                grupo.addPersonaje(aux);//Finalmente lo agrego
+        });
     }
 
     private void addEstrategiasToGrupo(Grupo temp, Cell[] headerRow, Cell[] grupoRow) {
@@ -129,11 +124,9 @@ public class ModelLoader {
         EPromedio promedioValores = new EPromedio();
         String value;
         String header;
-
         for (int j = 2; j < headerRow.length - 1; j++) {
             value = grupoRow[j].getContents();
             header = headerRow[j].getContents();
-
             switch (value) {
                 case "Mayor":
                     temp.addEstrategia(header, mayorValor);
@@ -157,13 +150,18 @@ public class ModelLoader {
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Region GETTERS">
-    public ArrayList<String> getAllAttrib() {
+/*    public ArrayList<String> getAllAttrib() {
         return (new ArrayList<>(allAttrib));
     }
-
-    public ArrayList<Personaje> getListaIndividuos(){
+*/
+    
+    public ArrayList<Mazo> getMazos(){
+        return listaMazos;
+    }
+    
+ /*   public ArrayList<Personaje> getListaIndividuos(){
         return listaIndividuos;
     }
-
+*/
     //</editor-fold>
 }

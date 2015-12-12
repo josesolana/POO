@@ -33,6 +33,7 @@ public class PopUpNuevaPartidaController implements Initializable {
     private final static String NOMBRE="HUMANO";
     private PartidaController padreController;
     private final HashMap<String,ModoJuego> modoJuegos;
+    private Mazo mazo = ModelLoader.getInstance().getMazos().get(0);
     
     @FXML
     private Slider sldNumRondas;
@@ -55,7 +56,7 @@ public class PopUpNuevaPartidaController implements Initializable {
             if (e.getCode()==KeyCode.ENTER)
                 btnReadyActionHandler(new ActionEvent());
         });
-        cmbAttributes.setItems(FXCollections.observableArrayList(ModelLoader.getInstance().getAllAttrib()));
+        cmbAttributes.setItems(FXCollections.observableArrayList(mazo.getAtributo()));
         cmbAttributes.getSelectionModel().selectFirst();
         modoJuegos.put(MANUAL, new Manual(cmbAttributes));
         modoJuegos.put(MODOAUTO[0], new Random(cmbAttributes));
@@ -66,7 +67,7 @@ public class PopUpNuevaPartidaController implements Initializable {
         choiceBoxModalidad.valueProperty().addListener((a,b,nuevo) -> {
             cmbAttributes.setVisible(nuevo.equals(MODOAUTO[1]));
         });
-        initTabOpDeJuego();
+        initTabOpcDeJuego();
     }
     
     //
@@ -80,7 +81,7 @@ public class PopUpNuevaPartidaController implements Initializable {
     //<editor-fold defaultstate="collapsed" desc="Region METHODS">
     
     // Antes de mostrar la ventanita, inicializo el Slider con las cantidades de rondas posibles.
-    private void initTabOpDeJuego() {//T Consotructor de la parte visual
+    private void initTabOpcDeJuego() {//Consotructor de la parte visual
         sldNumRondas.setValue((Juego.MAXROUND/3));
         sldNumRondas.setMin(1);
         sldNumRondas.setMax(Juego.MAXROUND);
@@ -127,7 +128,7 @@ public class PopUpNuevaPartidaController implements Initializable {
         String selectedMJ =(esAuto) ? choiceBoxModalidad.getValue() : MANUAL ;
         jugador.setModoJuego(modoJuegos.get(selectedMJ));//Seteo el tipo de juego elegido
         ObservableList<String> atributo=(esAuto) ? null : cmbAttributes.getItems() ; //O MEJOR AGREGO UN NEEDEXTRA A MJ??????
-        padreController.start((int)sldNumRondas.getValue(), jugador, atributo);
+        padreController.start((int)sldNumRondas.getValue(), jugador, atributo, mazo);//TODO: Hay que mandar el mazo seleccionado
         ((Stage) sldNumRondas.getScene().getWindow()).close();
     }
 

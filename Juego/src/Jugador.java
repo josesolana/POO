@@ -4,7 +4,7 @@ import java.util.Objects;
 public class Jugador implements Comparable<Jugador> {
     private String nombre;
     private int puntajePlayer;
-    private Deck cartas;
+    private Mazo cartas;
     private ModoJuego modoJuego;
     //private String comparador;
     private Personaje cartaActual;
@@ -16,7 +16,7 @@ public class Jugador implements Comparable<Jugador> {
         cartaActual=null;
     }
     
-    public Jugador(Deck cartas) {
+    public Jugador(Mazo cartas) {
         nombre=null;
         puntajePlayer = 0;
         this.cartas = cartas;
@@ -48,7 +48,7 @@ public class Jugador implements Comparable<Jugador> {
         return nombre;
     }
     
-    public void setCartas(Deck playerDeck) {
+    public void setCartas(Mazo playerDeck) {
         this.cartas = playerDeck;
         cartaActual=cartas.getFirst();
     }

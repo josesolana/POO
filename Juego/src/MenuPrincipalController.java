@@ -5,25 +5,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
-//</editor-fold>
 
 public class MenuPrincipalController {
 
     //<editor-fold defaultstate="collapsed" desc="Region VARIABLES AND CONSTRUCTORS">
-    @FXML
-    private Button btnPersonajes;
-    @FXML
-    private Button btnSalir;
-    
+ 
     private static PartidaController controladorPartida;
     private static Parent rootPartida;
     private static Scene popUpScene;
@@ -40,6 +32,7 @@ public class MenuPrincipalController {
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Region HANDLERS AND EVENTS">   
+    
     public void btnNuevaPartidaActionHandler(ActionEvent event) {
         final Stage popUpStage = new Stage();
         Platform.runLater(() -> {

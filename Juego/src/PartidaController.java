@@ -85,21 +85,20 @@ public class PartidaController implements Initializable {
         refreshActualRound();
     }
 
-    public void start(int rounds,Jugador jugador, ObservableList<String> atributo){// Configuración desde el PopUp
+    public void start(int rounds,Jugador jugador, ObservableList<String> atributo, Mazo mazo){// Configuración desde el PopUp
         this.setRounds(rounds);
         player=jugador;
-        if (atributo == null) ///HORRRRRRRIBLEEEEEEEE
+        if (atributo == null)
             cmbAttributes.setVisible(false); //TODO Agregar los label de el atributo y sus valores
         else {
             cmbAttributes.setItems(atributo);
             cmbAttributes.getSelectionModel().selectFirst();
         }
-        inicializarJugadores();
+        inicializarJugadores(mazo);
     }
 
-    private void inicializarJugadores(){//INICIAlIZA EL OBJETO
-        Deck mazo=new Deck();
-        ArrayList<Deck> repartida=mazo.repartir(2); //2 Participantes
+    private void inicializarJugadores(Mazo mazo){//INICIAlIZA EL OBJETO
+        ArrayList<Mazo> repartida=mazo.repartir(2); //2 Participantes
         player.setCartas(repartida.get(0));
         cpu=new Jugador(repartida.get(1));
         cpu.setNombre("CPU");
